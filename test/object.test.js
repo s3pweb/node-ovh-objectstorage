@@ -24,3 +24,12 @@ test('Get file content', async t => {
 
   t.truthy(objectInfo, 'Metadatas should exist')
 })
+
+test('Upload new image file', async t => {
+  let storage = new OVHStorage(config.storageConfig)
+  await storage.connection()
+
+  let body = await storage.object().upload('s3pweb-kafka-backup', 'image.jpeg')
+
+  t.truthy(body, 'Body should exist')
+})
